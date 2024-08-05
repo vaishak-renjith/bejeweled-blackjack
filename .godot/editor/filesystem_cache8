@@ -1,0 +1,7 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1722874650
+CardHand.gd::GDScript::-1::1722787702::0::1::::<>Node2D<>::
+CardHand.tscn::PackedScene::8135364261011326905::1722787702::0::1::::<><>::res://CardHand.gd
+icon.svg::CompressedTexture2D::8901152173552371648::1722535671::1722535679::1::::<><>::
+main.tscn::PackedScene::7738243874074219429::1722787702::0::1::::<><>::uid://dn53i4p8n4gw4::::res://CardHand.tscn
+test.gd::GDScript::-1::1722536352::0::1::::<>Sprite2D<>::

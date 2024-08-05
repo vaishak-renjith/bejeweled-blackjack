@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://diip0moewltt2"]
+
+[ext_resource type="PackedScene" uid="uid://dn53i4p8n4gw4" path="res://CardHand.tscn" id="1_lw3im"]
+
+[node name="Main" type="Node2D"]
+
+[node name="CardHand" parent="." instance=ExtResource("1_lw3im")]

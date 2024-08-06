@@ -8,7 +8,6 @@
 [node name="Main" type="Node2D"]
 
 [node name="PebbleHand" parent="." instance=ExtResource("1_ra02d")]
-visible = false
 
 [node name="CardHand" parent="." instance=ExtResource("1_lw3im")]
 

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://du1p7hsntpsey"]
+
+[ext_resource type="Script" path="res://Imp.gd" id="1_6f27k"]
+[ext_resource type="Texture2D" uid="uid://dwg0qv26oacsg" path="res://imp.png" id="2_2vgcn"]
+
+[node name="Imp" type="Node2D"]
+script = ExtResource("1_6f27k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(10, 10)
+texture = ExtResource("2_2vgcn")

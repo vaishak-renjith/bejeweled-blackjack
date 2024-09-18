@@ -18,7 +18,11 @@ const FLOAT_TIME = 1
 var can_draw = true
 
 var cards = []
+var selected_cards = []
 var pebble_hand = get_tree()
+var eview = get_tree()
+
+var health = 100
 
 # Function to update the card positions
 func update_card_positions():
@@ -45,15 +49,25 @@ func draw_card(texture: Texture):
 	add_child(card)
 	update_card_positions()
 
-func use_card(index):
-	if (!is_selected(index)):
-		return
-	var selected_card = cards[index]
-	if (selected_card.texture.resource_path.get_file() == "blue.png"):
-		if (pebble_hand.has_pebble("blue", 1)):
-			print("blue spell used")
+func is_selected(index):
+	return (cards[index] in selected_cards)
 
-func is_selected(i: int) -> bool:
+func get_card_count(name):
+	var file_name = name + ".png"
+	var count = 0
+	for card in selected_cards:
+		if (card.texture.resource_path.get_file() == file_name):
+			count+=1
+	return count
+
+func use_cards():
+	if (get_card_count("blue")):
+		if (pebble_hand.has_pebble("blue", 1)):
+			eview.get_enemy().damage(5)
+			print(eview.get_enemy().health)
+			
+
+func is_hovered(i: int) -> bool:
 	var card = cards[i]
 	var card_size = card.texture.get_size() * SCALE_FACTOR
 	var init_pos = getInitPos(i)
@@ -77,12 +91,15 @@ func _process(delta):
 	var vertical_offset = sin(time_passed * TAU / FLOAT_TIME) * FLOAT_DISTANCE - 20
 
 	for i in range(cards.size()):
-		if is_selected(i):
+		if is_hovered(i) or is_selected(i):
 			var horizontal_position = getInitPos(i).x + horizontal_offset
 			var vertical_position = getInitPos(i).y + vertical_offset
 			cards[i].position = Vector2(horizontal_position, vertical_position)
 			if (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
-				use_card(i)
+				if (is_selected(i) and is_hovered(i)):
+					selected_cards.erase(cards[i])
+				elif (is_hovered(i)):
+					selected_cards.append(cards[i])
 		else:
 			cards[i].position = getInitPos(i)
 	#queue_redraw()
@@ -97,9 +114,12 @@ func _input(event):
 		draw_card(random_textures.pick_random())
 		can_draw = false
 		$Timer.start()
+	if event.as_text() == "U":
+		use_cards()
 
 func _ready():
 	pebble_hand = get_node("/root/Main/PebbleHand")
+	eview = get_node("/root/Main/EnemyView")
 
 func _on_timer_timeout():
 	can_draw = true

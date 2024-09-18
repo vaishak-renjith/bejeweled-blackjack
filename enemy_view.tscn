@@ -1,13 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgrthyn4f0syc"]
+[gd_scene load_steps=2 format=3 uid="uid://bgrthyn4f0syc"]
 
 [ext_resource type="Script" path="res://enemy_view.gd" id="1_5qbmk"]
-[ext_resource type="Texture2D" uid="uid://bidr71fk2rs82" path="res://goblin.png" id="1_mqqaw"]
 
 [node name="EnemyView" type="Node2D"]
 position = Vector2(438, 182)
 script = ExtResource("1_5qbmk")
-
-[node name="Enemy" type="Sprite2D" parent="."]
-position = Vector2(0, -27)
-scale = Vector2(18.375, 18.1875)
-texture = ExtResource("1_mqqaw")

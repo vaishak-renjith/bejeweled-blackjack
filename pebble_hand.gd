@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var texture = preload("res://icon.svg")
+@onready var purple_5 = preload("res://purple5.png")
 
 func _ready():
 	draw_pebble()
@@ -44,10 +45,26 @@ func draw_pebble():
 		print(total_value + new_pebble.value)
 		return
 	var new_pebble_sprite = Sprite2D.new()
-	new_pebble_sprite.texture = texture
+	if (new_pebble.color == "purple" and new_pebble.value == 5):
+		new_pebble_sprite.texture = purple_5
+	else:
+		new_pebble_sprite.texture = texture
 	new_pebble.texture = new_pebble_sprite.texture
 	pebbles.append(new_pebble)
 	update_ui(new_pebble)
+
+func use_pebble(color, value, amount):
+	var count = 0
+	for pebble in pebbles:
+		if pebble.color == color and pebble.value == value:
+			pebbles.erase(pebble)
+			for textrect in hboxs[ui_dic[color]].get_children():
+				if textrect.texture.resource_path.get_file() == "purple5.png":
+					hboxs[ui_dic[color]].remove_child(textrect)
+			pebble.queue_free()
+			count+=1
+			if (count >= amount):
+				return
 
 func has_pebble(color, value):
 	for pebble in pebbles:
@@ -60,6 +77,8 @@ func _input(event):
 		draw_pebble()
 		can_draw = false
 		$Timer.start()
+	if event.as_text() == "R":
+		use_pebble("purple", 5, 1)
 
 func _on_timer_timeout():
 	can_draw = true

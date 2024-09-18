@@ -1,5 +1,6 @@
-res://pebble_hand.tscn
 res://main.tscn
 res://CardHand.tscn
-res://pebble.gd
-res://pebble_hand.gd
+res://pebble_hand.tscn
+res://enemy_view.tscn
+res://Change.gd
+res://enemy_view.gd

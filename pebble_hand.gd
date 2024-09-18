@@ -7,16 +7,12 @@ func _ready():
 
 var ui_dic = {}
 var hboxs = []
+var pebbles = []
 var next_idx = 0
 
 var can_draw = true
 
 func update_ui(p: Pebble):
-	# if pebble color in ui_dic.keys()
-		# add new texturerect to the hboxcontainer for that color
-	# else 
-		# create new hboxcontainer for that color 
-		# add new texturerect to the new hboxcontainer for that color
 	if p.color in ui_dic.keys():
 		var hbox = hboxs[ui_dic[p.color]]
 		var new_textrect = TextureRect.new()
@@ -24,7 +20,7 @@ func update_ui(p: Pebble):
 		new_textrect.custom_minimum_size = Vector2(32, 32) 
 		new_textrect.texture = p.texture
 		hbox.add_child(new_textrect)
-		print("added new pebble to ", p.color, " hbox")
+		print("added new pebble(", p.value, ") to ", p.color, " hbox")
 	else:
 		ui_dic[p.color] = next_idx
 		next_idx += 1
@@ -40,12 +36,24 @@ func update_ui(p: Pebble):
 
 func draw_pebble():
 	var new_pebble = Pebble.new()
-	print(new_pebble.color)
-	print(new_pebble.value)
+	
+	var total_value = 0
+	for pebble in pebbles:
+		total_value += pebble.value 
+	if (total_value + new_pebble.value >= 21):
+		print(total_value + new_pebble.value)
+		return
 	var new_pebble_sprite = Sprite2D.new()
 	new_pebble_sprite.texture = texture
 	new_pebble.texture = new_pebble_sprite.texture
+	pebbles.append(new_pebble)
 	update_ui(new_pebble)
+
+func has_pebble(color, value):
+	for pebble in pebbles:
+		if pebble.color == color and pebble.value == value:
+			return true
+	return false
 
 func _input(event):
 	if event.as_text() == "P" and can_draw:

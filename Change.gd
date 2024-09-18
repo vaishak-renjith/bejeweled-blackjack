@@ -9,6 +9,8 @@ func changeHand():
 	if (not $"../PebbleHand".visible):
 		$"../PebbleHand".visible = true
 		$"../CardHand".visible = false
+		$"../EnemyView".visible = false
 	else:
 		$"../CardHand".visible = true
 		$"../PebbleHand".visible = false
+		$"../EnemyView".visible = true

@@ -1,9 +1,16 @@
 extends Node2D
 
-const card_texture = preload("res://red.png")
+const red_card_texture = preload("res://red.png")
+const blue_card_texture = preload("res://blue.png")
+const green_card_texture = preload("res://green.png")
+const black_card_texture = preload("res://black.png")
+const yellow_card_texture = preload("res://yellow.png")
+const purple_card_texture =  preload("res://purple.png")
+
+var random_textures = [red_card_texture, blue_card_texture, green_card_texture, black_card_texture, yellow_card_texture, purple_card_texture]
 
 var SCALE_FACTOR = 8
-var CARD_WIDTH = card_texture.get_width()
+var CARD_WIDTH = red_card_texture.get_width()
 const CARD_SPACING = 100
 const FLOAT_DISTANCE = 5
 const FLOAT_TIME = 1
@@ -11,6 +18,7 @@ const FLOAT_TIME = 1
 var can_draw = true
 
 var cards = []
+var pebble_hand = get_tree()
 
 # Function to update the card positions
 func update_card_positions():
@@ -36,6 +44,14 @@ func draw_card(texture: Texture):
 	card.scale = Vector2(8, 8)
 	add_child(card)
 	update_card_positions()
+
+func use_card(index):
+	if (!is_selected(index)):
+		return
+	var selected_card = cards[index]
+	if (selected_card.texture.resource_path.get_file() == "blue.png"):
+		if (pebble_hand.has_pebble("blue", 1)):
+			print("blue spell used")
 
 func is_selected(i: int) -> bool:
 	var card = cards[i]
@@ -65,6 +81,8 @@ func _process(delta):
 			var horizontal_position = getInitPos(i).x + horizontal_offset
 			var vertical_position = getInitPos(i).y + vertical_offset
 			cards[i].position = Vector2(horizontal_position, vertical_position)
+			if (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
+				use_card(i)
 		else:
 			cards[i].position = getInitPos(i)
 	#queue_redraw()
@@ -76,9 +94,12 @@ func remove_card(index: int):
 
 func _input(event):
 	if event.as_text() == "D" and can_draw:
-		draw_card(card_texture)
+		draw_card(random_textures.pick_random())
 		can_draw = false
 		$Timer.start()
-		
+
+func _ready():
+	pebble_hand = get_node("/root/Main/PebbleHand")
+
 func _on_timer_timeout():
 	can_draw = true

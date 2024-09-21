@@ -16,6 +16,7 @@ const FLOAT_DISTANCE = 5
 const FLOAT_TIME = 1
 
 var can_draw = true
+var can_move = true
 
 var cards = []
 var selected_cards = []
@@ -65,6 +66,8 @@ func use_cards():
 		if (pebble_hand.has_pebble("blue", 1)):
 			eview.get_enemy().damage(5)
 			print(eview.get_enemy().health)
+			can_move = false
+			eview.get_enemy().can_move = true
 			
 
 func is_hovered(i: int) -> bool:
@@ -110,11 +113,10 @@ func remove_card(index: int):
 		update_card_positions()
 
 func _input(event):
-	if event.as_text() == "D" and can_draw:
+	if event.as_text() == "D" and can_move and can_draw:
 		draw_card(random_textures.pick_random())
 		can_draw = false
-		$Timer.start()
-	if event.as_text() == "U":
+	if event.as_text() == "U" and can_move:
 		use_cards()
 
 func _ready():

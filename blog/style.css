@@ -1,0 +1,178 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #1c1b29;
+    color: #dcdcdc;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure body takes the full height of the viewport */
+}
+
+a:hover {
+    color: #FFFFFF; /* White color on hover */
+}
+
+a {
+    color: #FFD700; /* Gold color for high contrast */
+    text-decoration: underline; /* Add underline to links */
+}
+
+header .container {
+    justify-content: space-between;
+    display: flex;
+    align-items: baseline; /* Center align items vertically */
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+header h1 a{
+    font-size: 40px;
+    text-decoration: none;
+    text-transform: none;
+}
+
+header {
+    background: #2a2740;
+    color: #dcdcdc;
+    padding: 0px; /* Adjusted padding */
+    min-height: 0px;
+    border-bottom: #5d4d9d 3px solid;
+}
+
+header a {
+    color: #dcdcdc;
+    text-decoration: underline; /* Add underline to header links */
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+header ul {
+    padding: 0;
+    list-style: none;
+    display: flex; /* Make ul a flex container */
+    margin: 0; /* Reset margin */
+}
+
+header li {
+    display: inline;
+    padding: 0 20px;
+}
+
+.sidebar h3 {
+    padding-left: 15px;
+}
+
+.sidebar ul {
+    padding-left: 15px; /* Remove padding from the ul */
+    list-style: none; /* Remove default bullet points */
+}
+
+.sidebar li {
+    padding: 1px; /* Remove padding from the ul */
+    list-style: none; /* Remove default bullet points */
+}
+
+.sidebar a {
+    color: #FFD700; /* Gold color for high contrast */
+    text-decoration: underline; /* Add underline to links */
+}
+
+
+nav {
+    margin-top: 5px; /* Adjust margin to align with h1 */
+}
+
+.content-container {
+    display: flex; /* Use flexbox to layout main and sidebar */
+    width: 100%;
+    flex: 1; /* Make it take the remaining space */
+}
+
+main {
+    flex: 3; /* Main content takes more space */
+    margin-right: 20px; /* Space between main and sidebar */
+    padding: 20px; /* Add padding for better layout */
+}
+
+main .container {
+    padding: 0; /* Remove padding to avoid extra space */
+}
+
+main article {
+    background: #2a2740;
+    padding: 20px;
+    margin-bottom: 40px; /* Increase margin-bottom for more space between articles */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+main form {
+    background: #2a2740;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+main form input, main form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #5d4d9d;
+    border-radius: 5px;
+    background-color: #1c1b29;
+    color: #dcdcdc;
+}
+
+main form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #5d4d9d;
+    color: #dcdcdc;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+main form button:hover {
+    background: #4a3a81;
+}
+
+#posts .post {
+    background: #2a2740;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+#posts .post h2 {
+    margin-top: 0;
+}
+
+.sidebar {
+    flex: 0.65; /* Sidebar takes less space */
+    background: #151420;
+    border-radius: 5px;
+    height: 100rlh; /* Make sidebar span the entire height */
+    top: 0; /* Align it to the top */
+    right: 0; /* Align it to the right */
+    margin-right: 0; /* Remove any margin on the right */
+}
+
+footer {
+    background: #2a2740;
+    color: #dcdcdc;
+    text-align: center;
+    padding: 20px;
+}

@@ -2,6 +2,23 @@ extends Node2D
 
 @onready var texture = preload("res://icon.svg")
 @onready var purple_5 = preload("res://purple5.png")
+@onready var purple_3 = preload("res://purple3.png")
+@onready var purple_1 = preload("res://purple1.png")
+@onready var red_5 = preload("res://red5.png")
+@onready var red_3 = preload("res://red3.png")
+@onready var red_1 = preload("res://red1.png")
+@onready var yellow_5 = preload("res://yellow5.png")
+@onready var yellow_3 = preload("res://yellow3.png")
+@onready var yellow_1 = preload("res://yellow1.png")
+@onready var black_5 = preload("res://black5.png")
+@onready var black_3 = preload("res://black3.png")
+@onready var black_1 = preload("res://black1.png")
+@onready var blue_5 = preload("res://blue5.png")
+@onready var blue_3 = preload("res://blue3.png")
+@onready var blue_1 = preload("res://blue1.png")
+@onready var green_5 = preload("res://green5.png")
+@onready var green_3 = preload("res://green3.png")
+@onready var green_1 = preload("res://green1.png")
 
 func _ready():
 	draw_pebble()
@@ -35,6 +52,46 @@ func update_ui(p: Pebble):
 		$Control/VBoxContainer.add_child(new_hbox)
 		print("added new ", p.color, " hbox")
 
+func get_pebble_texture(color, val):
+	var pair = [color, val]
+	match pair:
+		["purple", 5]:
+			return purple_5
+		["red", 5]:
+			return red_5
+		["green", 5]:
+			return green_5
+		["blue", 5]:
+			return blue_5
+		["black", 5]:
+			return black_5
+		["purple", 3]:
+			return purple_3
+		["red", 3]:
+			return red_3
+		["green", 3]:
+			return green_3
+		["blue", 3]:
+			return blue_3
+		["black", 3]:
+			return black_3
+		["purple", 1]:
+			return purple_1
+		["red", 1]:
+			return red_1
+		["green", 1]:
+			return green_1
+		["blue", 1]:
+			return blue_1
+		["black", 1]:
+			return black_1
+		["yellow", 5]:
+			return yellow_5
+		["yellow", 3]:
+			return yellow_3
+		["yellow", 1]:
+			return yellow_1
+
 func draw_pebble():
 	var new_pebble = Pebble.new()
 	
@@ -45,10 +102,8 @@ func draw_pebble():
 		print(total_value + new_pebble.value)
 		return
 	var new_pebble_sprite = Sprite2D.new()
-	if (new_pebble.color == "purple" and new_pebble.value == 5):
-		new_pebble_sprite.texture = purple_5
-	else:
-		new_pebble_sprite.texture = texture
+	
+	new_pebble_sprite.texture = get_pebble_texture(new_pebble.color, new_pebble.value)
 	new_pebble.texture = new_pebble_sprite.texture
 	pebbles.append(new_pebble)
 	update_ui(new_pebble)

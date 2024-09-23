@@ -39,9 +39,6 @@ func getInitPos(i):
 	var start_x = get_viewport().get_visible_rect().size.x/2 + (CARD_WIDTH/2) - total_width/2
 	return Vector2(start_x + i * (CARD_WIDTH + CARD_SPACING), 2.5*get_viewport().get_visible_rect().size.y/4) 
 
-func _draw():
-	print("draw called")
-
 func draw_card(texture: Texture):
 	var card = Sprite2D.new()
 	card.texture = texture
